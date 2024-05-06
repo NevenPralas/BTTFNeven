@@ -178,4 +178,18 @@ public class Buttons : NetworkBehaviour
         playerScript.CmdUnclick4();
     }
 
+    public void Past()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdPast();
+    }
+
+    public void Present()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdPresent();
+    }
+
 }

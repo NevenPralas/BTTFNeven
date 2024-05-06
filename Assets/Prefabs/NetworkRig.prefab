@@ -25003,6 +25003,20 @@ MonoBehaviour:
   click1: 0
   click2: 0
   door1: {fileID: 44794103468292207, guid: b7c60aa14ed450a46a79d1e274e5bcba, type: 3}
+  click3: 0
+  click4: 0
+  tagTMText: TMText
+  tagButtonPast: ButtonPast
+  tagButtonPresent: ButtonPresent
+  clickPast: 0
+  clickPresent: 0
+  clickPocetak: 1
+  tagPresentText1: PresentText1
+  tagPresentText2: PresentText2
+  tagPresentText3: PresentText3
+  tagPresentImage: PresentImage
+  pastSprite: {fileID: 21300000, guid: a3fa9ef843d5547448522a1d8b0796b7, type: 3}
+  presentSprite: {fileID: 21300000, guid: 93a5683b103bba04a8863c17922ac74e, type: 3}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,15 @@ TagManager:
   - Button2
   - Door1
   - TMText
+  - ButtonPast
+  - ButtonPresent
+  - PresentText1
+  - PresentText2
+  - PresentText3
+  - PresentImage
+  - Button3
+  - Button4
+  - DoorGore
   layers:
   - Default
   - TransparentFX

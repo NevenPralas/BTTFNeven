@@ -165,7 +165,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -262,7 +262,7 @@ MonoBehaviour:
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7425295017016556020}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UlazniDugmici, Assembly-CSharp
         m_MethodName: Click1
         m_Mode: 1
@@ -277,7 +277,7 @@ MonoBehaviour:
   onButtonUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7425295017016556020}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UlazniDugmici, Assembly-CSharp
         m_MethodName: UnClick1
         m_Mode: 1
@@ -403,7 +403,6 @@ GameObject:
   - component: {fileID: 2004906250203897893}
   - component: {fileID: 6640915896323093364}
   - component: {fileID: 1879712027515044686}
-  - component: {fileID: 7425295017016556020}
   m_Layer: 0
   m_Name: ButtonRound
   m_TagString: Untagged
@@ -742,24 +741,6 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!114 &7425295017016556020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5270384563773225908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f501dab13f75d524bb6d3370f213617a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  click1: 0
-  click2: 0
-  tagDoor: Door1
 --- !u!1 &6233431910562995836
 GameObject:
   m_ObjectHideFlags: 0

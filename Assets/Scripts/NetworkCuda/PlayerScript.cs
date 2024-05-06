@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class PlayerScript : NetworkBehaviour
@@ -68,9 +69,53 @@ public class PlayerScript : NetworkBehaviour
     private GameObject TMText;
     public string tagTMText = "TMText";
 
+    private GameObject buttonPast;
+    private GameObject buttonPresent;
+    public string tagButtonPast = "ButtonPast";
+    public string tagButtonPresent = "ButtonPresent";
+
+    [SyncVar]
+    public bool clickPast = false;
+    [SyncVar]
+    public bool clickPresent = false;
+    [SyncVar]
+    public bool clickPocetak = true;
+
+    public string tagPresentText1 = "PresentText1";
+    public string tagPresentText2 = "PresentText2";
+    public string tagPresentText3 = "PresentText3";
+    private GameObject presentText1;
+    private GameObject presentText2;
+    private GameObject presentText3;
+
+    public string tagPresentImage = "PresentImage";
+    private GameObject presentImage;
+    public Sprite pastSprite;
+    public Sprite presentSprite;
+
+    [SyncVar]
+    public bool vrataOtvorena = false;
+    [SyncVar]
+    public bool vrataOtvorenaPrviPuta = false;
+    [SyncVar]
+    public bool textPrviPuta = false;
+    private GameObject text;
+    public string textTag = "Text";
+    public string targetText = "aztec";
+
+
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
+        buttonPast = GameObject.FindGameObjectWithTag(tagButtonPast);
+        buttonPresent = GameObject.FindGameObjectWithTag(tagButtonPresent);
+        presentText1 = GameObject.FindGameObjectWithTag(tagPresentText1);
+        presentText2 = GameObject.FindGameObjectWithTag(tagPresentText2);
+        presentText3 = GameObject.FindGameObjectWithTag(tagPresentText3);
+
+        presentImage = GameObject.FindGameObjectWithTag(tagPresentImage);
+
+        text = GameObject.FindGameObjectWithTag(textTag);
     }
 
     public override void OnStartServer()
@@ -102,6 +147,7 @@ public class PlayerScript : NetworkBehaviour
 
     private void Update()
     {
+        Text textComponent = text.GetComponent<Text>();
 
         if (stisnuo1 && stisnuo2)
         {
@@ -164,7 +210,44 @@ public class PlayerScript : NetworkBehaviour
             }
             CmdTextClosed();
         }
+        else if(clickPast && !clickPocetak)
+        {
+            CmdPastText();
+        }
+        else if(clickPresent && !clickPocetak)
+        {
+            CmdPresentText();
+        }
+        else if (textComponent.text.Equals(targetText, System.StringComparison.OrdinalIgnoreCase) && !textPrviPuta)
+        {
+            if (authority)
+            {
+                CmdDoorGore();
+                textPrviPuta = true;
+            }
+        }
+        else if (vrataOtvorena && !vrataOtvorenaPrviPuta)
+        {
+            if (authority)
+            {
+                CmdDoorGoreNapokon();
+                vrataOtvorenaPrviPuta = true;
+            }
+        }
 
+    }
+    [Command]
+    private void CmdDoorGore()
+    {
+        Debug.LogError("CmdDoorGore");
+        vrataOtvorena = true;
+    }
+    [Command]
+    private void CmdDoorGoreNapokon()
+    {
+        Debug.LogError("Gotovo -> Velika soba");
+        Animator animator = vrataVelikaSobaObject.GetComponent<Animator>();
+        animator.SetBool("stisnut", false);
     }
 
     [Command]
@@ -417,6 +500,11 @@ public class PlayerScript : NetworkBehaviour
     {
         TMText.GetComponent<TMP_Text>().text = "Open";
         TMText.GetComponent<TMP_Text>().color = Color.green;
+
+        buttonPresent.GetComponent<MeshRenderer>().enabled = false;
+        buttonPast.GetComponent<MeshRenderer>().enabled = false;
+        buttonPresent.GetComponent<BoxCollider>().enabled = false;
+        buttonPast.GetComponent<BoxCollider>().enabled = false;
     }
 
     [ClientRpc]
@@ -424,5 +512,60 @@ public class PlayerScript : NetworkBehaviour
     {
         TMText.GetComponent<TMP_Text>().text = "Closed";
         TMText.GetComponent<TMP_Text>().color = Color.red;
+
+        buttonPresent.GetComponent<MeshRenderer>().enabled = true;
+        buttonPast.GetComponent<MeshRenderer>().enabled = true;
+        buttonPresent.GetComponent<BoxCollider>().enabled = true;
+        buttonPast.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    [Command]
+    public void CmdPast()
+    {
+        clickPocetak = false;
+        clickPresent = false;
+        clickPast = true;
+    }
+    [Command]
+    public void CmdPresent()
+    {
+        clickPocetak = false;
+        clickPast = false;
+        clickPresent = true;
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdPastText()
+    {
+        RpcPastText();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdPresentText()
+    {
+        RpcPresentText();
+    }
+    [ClientRpc]
+    public void RpcPastText()
+    {
+        presentText1.GetComponent<TMP_Text>().text = "PAST";
+        presentText1.GetComponent<TMP_Text>().color = Color.cyan;
+        presentText2.GetComponent<TMP_Text>().text = "PAST";
+        presentText2.GetComponent<TMP_Text>().color = Color.cyan;
+        presentText3.GetComponent<TMP_Text>().text = "PAST";
+        presentText3.GetComponent<TMP_Text>().color = Color.cyan;
+
+        presentImage.GetComponent<Image>().sprite = pastSprite;
+    }
+    [ClientRpc]
+    public void RpcPresentText()
+    {
+        presentText1.GetComponent<TMP_Text>().text = "PRESENT";
+        presentText1.GetComponent<TMP_Text>().color = Color.yellow;
+        presentText2.GetComponent<TMP_Text>().text = "PRESENT";
+        presentText2.GetComponent<TMP_Text>().color = Color.yellow;
+        presentText3.GetComponent<TMP_Text>().text = "PRESENT";
+        presentText3.GetComponent<TMP_Text>().color = Color.yellow;
+
+        presentImage.GetComponent<Image>().sprite = presentSprite;
     }
 }

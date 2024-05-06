@@ -21,9 +21,14 @@ public class pojavaSvega : NetworkBehaviour
 
     public string targetButton1 = "Button1";
     public string targetButton2 = "Button2";
+    public string targetButton3 = "Button3";
+    public string targetButton4 = "Button4";
 
     private GameObject button1;
     private GameObject button2;
+    private GameObject button3;
+    private GameObject button4;
+
 
     private void Start()
     {
@@ -33,6 +38,9 @@ public class pojavaSvega : NetworkBehaviour
         lampa3 = GameObject.FindGameObjectWithTag(targetLampa3);
         button1 = GameObject.FindGameObjectWithTag(targetButton1);
         button2 = GameObject.FindGameObjectWithTag(targetButton2);
+        button3 = GameObject.FindGameObjectWithTag(targetButton3);
+        button4 = GameObject.FindGameObjectWithTag(targetButton4);
+
 
 
         if (text == null)
@@ -65,5 +73,11 @@ public class pojavaSvega : NetworkBehaviour
         lampa3.GetComponent<MeshRenderer>().enabled = true;
         button1.GetComponent<MeshRenderer>().enabled = true;
         button2.GetComponent<MeshRenderer>().enabled = true;
+        button1.GetComponent<BoxCollider>().enabled = true;
+        button2.GetComponent<BoxCollider>().enabled = true;
+        button3.GetComponent<MeshRenderer>().enabled = true;
+        button4.GetComponent<MeshRenderer>().enabled = true;
+        button3.GetComponent<BoxCollider>().enabled = true;
+        button4.GetComponent<BoxCollider>().enabled = true;
     }
 }
