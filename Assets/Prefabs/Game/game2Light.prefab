@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8895846065901113394}
   - component: {fileID: 6820731715255008495}
   - component: {fileID: 3173116060731522957}
+  - component: {fileID: -363099090161122942}
   m_Layer: 0
   m_Name: game2Light
-  m_TagString: Untagged
+  m_TagString: PrvoSvitlo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +120,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 0
+  _assetId: 2936218287
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
+--- !u!114 &-363099090161122942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953806616928407029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b5c887a69a155468c4f48569b327d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  drugoSvitloTag: DrugoSvitlo
+  treceSvitloTag: TreceSvitlo
+  slika1: {fileID: 2929558600659114469, guid: c9b3716f14179b140be55f6a5f18156f, type: 3}
+  prviPuta: 1
+  objekt: PocetniDrugi

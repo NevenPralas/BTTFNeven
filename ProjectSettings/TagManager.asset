@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DrugoSvitlo
+  - PrvoSvitlo
+  - TreceSvitlo
+  - PocetniPrvi
+  - PocetniDrugi
+  - PocetniTreci
+  - Text
+  - Lampa1
+  - Lampa2
+  - Lampa3
+  - Button1
+  - Button2
+  - Door1
+  - TMText
   layers:
   - Default
   - TransparentFX

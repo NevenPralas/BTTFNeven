@@ -117,4 +117,65 @@ public class Buttons : NetworkBehaviour
         playerScript.CmdOtpusti6();
 
     }
+
+    public void Click1()
+    {
+        Debug.LogError("Click1");
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdClick1();
+    }
+
+    public void Click2()
+    {
+        Debug.LogError("Click2");
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdClick2();
+    }
+
+    public void Unclick1()
+    {
+        Debug.LogError("Unclick1");
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdUnclick1();
+    }
+
+    public void Unclick2()
+    {
+        Debug.LogError("Unclick2");
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdUnclick2();
+    }
+
+    public void Click3()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdClick3();
+    }
+
+    public void Click4()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdClick4();
+    }
+
+    public void Unclick3()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdUnclick3();
+    }
+
+    public void Unclick4()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdUnclick4();
+    }
+
 }

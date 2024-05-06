@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: -5569449072904648910}
   m_Layer: 0
   m_Name: Cube (21)
-  m_TagString: Untagged
+  m_TagString: PocetniDrugi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -24989,6 +24989,7 @@ MonoBehaviour:
   stisnuo4: 0
   stisnuo5: 0
   stisnuo6: 0
+  stisnuo7: 1
   stisnuoVideo: 0
   vrata: {fileID: 8765938795183045964, guid: e7f17fcfd08d12948a551b778d5c16d2, type: 3}
   vrata2: {fileID: 1998755350453033354, guid: 4f02e3b624490324eabf6347093511e4, type: 3}
@@ -24999,6 +25000,9 @@ MonoBehaviour:
   ekran1: {fileID: 6882879333970305565, guid: 72ed9bcd47648a9439fa27785d58e1e3, type: 3}
   ekran2: {fileID: 7588345436889767649, guid: 7c88401042753854fb2942f271f2a288, type: 3}
   ekran3: {fileID: 3965743804485032149, guid: 6b4747061c19b6f45b6af65639ead56f, type: 3}
+  click1: 0
+  click2: 0
+  door1: {fileID: 44794103468292207, guid: b7c60aa14ed450a46a79d1e274e5bcba, type: 3}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0

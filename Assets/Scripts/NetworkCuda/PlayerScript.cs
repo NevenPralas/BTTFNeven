@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -50,6 +51,28 @@ public class PlayerScript : NetworkBehaviour
     GameObject ekran3Object;
 
     int k = 0;
+
+    [SyncVar]
+    public bool click1 = false;
+    [SyncVar]
+    public bool click2 = false;
+
+    public GameObject door1;
+    GameObject door1Object;
+
+    [SyncVar]
+    public bool click3 = false;
+    [SyncVar]
+    public bool click4 = false;
+
+    private GameObject TMText;
+    public string tagTMText = "TMText";
+
+    private void Start()
+    {
+        TMText = GameObject.FindGameObjectWithTag(tagTMText);
+    }
+
     public override void OnStartServer()
     {
         if (isServer && isLocalPlayer && isOwned)
@@ -68,6 +91,11 @@ public class PlayerScript : NetworkBehaviour
 
             vrataVelikaSobaObject = Instantiate(vrataVelikaSoba);
             NetworkServer.Spawn(vrataVelikaSobaObject);
+
+            door1Object = Instantiate(door1);
+            NetworkServer.Spawn(door1Object);
+
+            
 
         }
     }
@@ -117,6 +145,24 @@ public class PlayerScript : NetworkBehaviour
                 CmdVideoStvori();
                 stisnuoVideo = false;
             }
+        }
+        else if(click1 && click2)
+        {
+            if (authority)
+            {
+                CmdDoor1Open();
+                
+            }
+            CmdTextOpen();
+        }
+        else if(click3 && click4)
+        {
+            if (authority)
+            {
+                CmdDoor1Close();
+                
+            }
+            CmdTextClosed();
         }
 
     }
@@ -295,5 +341,88 @@ public class PlayerScript : NetworkBehaviour
     public void CmdOtpusti6()
     {
         stisnuo6 = false;
+    }
+
+    [Command]
+    public void CmdClick1()
+    {
+        click1 = true;
+    }
+
+    [Command]
+    public void CmdClick2()
+    {
+        click2 = true;
+    }
+
+    [Command]
+    public void CmdUnclick1()
+    {
+        click1 = false;
+    }
+
+    [Command]
+    public void CmdUnclick2()
+    {
+        click2 = false;
+    }
+
+    [Command]
+    public void CmdDoor1Open()
+    {
+        Animator animator = door1Object.GetComponent<Animator>();
+        animator.SetBool("press", true);
+    }
+
+    [Command]
+    public void CmdClick3()
+    {
+        click3 = true;
+    }
+    [Command]
+    public void CmdClick4()
+    {
+        click4 = true;
+    }
+    [Command]
+    public void CmdUnclick3()
+    {
+        click3 = false;
+    }
+    [Command]
+    public void CmdUnclick4()
+    {
+        click4 = false;
+    }
+    [Command]
+    public void CmdDoor1Close()
+    {
+        Animator animator = door1Object.GetComponent<Animator>();
+        animator.SetBool("press", false);
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdTextOpen()
+    {
+        RpcTextOpen();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdTextClosed()
+    {
+        RpcTextClosed();
+    }
+
+    [ClientRpc]
+    public void RpcTextOpen()
+    {
+        TMText.GetComponent<TMP_Text>().text = "Open";
+        TMText.GetComponent<TMP_Text>().color = Color.green;
+    }
+
+    [ClientRpc]
+    public void RpcTextClosed()
+    {
+        TMText.GetComponent<TMP_Text>().text = "Closed";
+        TMText.GetComponent<TMP_Text>().color = Color.red;
     }
 }

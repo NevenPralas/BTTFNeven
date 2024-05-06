@@ -45,12 +45,12 @@ namespace BNG {
             // Find KeyCode Sequence
             if (formattedKey.ToLower() == "backspace") {
                 // At beginning of line - nothing to back into
-                if(caretPosition == 0) {
+                if(textLength == 0) {
                     PlayClickSound(); // Still play the click sound
                     return;
-                }
+                } 
 
-                currentText = currentText.Remove(caretPosition - 1, 1);
+                currentText = currentText.Remove(textLength - 1, 1);
 
                 if(!caretAtEnd) {
                     MoveCaretBack();
@@ -65,22 +65,22 @@ namespace BNG {
             }
             else {
                 // Simply append the text to the end
-                if(caretAtEnd) {
-                    currentText += formattedKey;
-                    MoveCaretUp();
-                }
-                else {
-                    // Otherwise we need to figure out how to insert the text and where
-                    string preText = "";
-                    if (caretPosition > 0) {
-                        preText = currentText.Substring(0, caretPosition);
-                    }
-                    MoveCaretUp();
+                 if(caretAtEnd) {
+                     currentText += formattedKey;
+                     MoveCaretUp();
+                 }
+                 else {
+                     // Otherwise we need to figure out how to insert the text and where
+                     string preText = "";
+                     if (caretPosition > 0) {
+                         preText = currentText.Substring(0, caretPosition);
+                     }
+                     MoveCaretUp();
 
-                    string postText = currentText.Substring(caretPosition, textLength - preText.Length);
+                     string postText = currentText.Substring(caretPosition, textLength - preText.Length);
 
-                    currentText = preText + formattedKey + postText;
-                }
+                    currentText = preText + formattedKey + postText; 
+                } 
             }
 
             // Apply the text change
