@@ -29,6 +29,11 @@ public class pojavaSvega : NetworkBehaviour
     private GameObject button3;
     private GameObject button4;
 
+    public string tagDoorGore = "DoorGore";
+    private GameObject doorGore;
+
+    Animator animator;
+
 
     private void Start()
     {
@@ -41,9 +46,15 @@ public class pojavaSvega : NetworkBehaviour
         button3 = GameObject.FindGameObjectWithTag(targetButton3);
         button4 = GameObject.FindGameObjectWithTag(targetButton4);
 
+        doorGore = GameObject.FindGameObjectWithTag(tagDoorGore);
+
+        animator = doorGore.GetComponent<Animator>();
+        animator.SetBool("stisnut", true);
 
 
-        if (text == null)
+
+        if (text == null || lampa1 == null || lampa2 == null || lampa3 == null 
+            || button1 == null || button2 == null || button3 == null || button4 == null || doorGore == null)
         {
             Debug.LogError("References to drugoSvitlo or treceSvitlo are null.");
         }
@@ -79,5 +90,8 @@ public class pojavaSvega : NetworkBehaviour
         button4.GetComponent<MeshRenderer>().enabled = true;
         button3.GetComponent<BoxCollider>().enabled = true;
         button4.GetComponent<BoxCollider>().enabled = true;
+
+        // Animator animator = doorGore.GetComponent<Animator>();
+        animator.SetBool("stisnut", false);
     }
 }

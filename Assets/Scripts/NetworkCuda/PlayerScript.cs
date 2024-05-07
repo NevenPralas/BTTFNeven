@@ -93,15 +93,12 @@ public class PlayerScript : NetworkBehaviour
     public Sprite pastSprite;
     public Sprite presentSprite;
 
-    [SyncVar]
-    public bool vrataOtvorena = false;
-    [SyncVar]
-    public bool vrataOtvorenaPrviPuta = false;
-    [SyncVar]
-    public bool textPrviPuta = false;
-    private GameObject text;
-    public string textTag = "Text";
-    public string targetText = "aztec";
+    public string tagPresent = "Present";
+    public string tagPast = "Past";
+    private GameObject presentObject;
+    private GameObject pastObject;
+
+    
 
 
     private void Start()
@@ -115,7 +112,9 @@ public class PlayerScript : NetworkBehaviour
 
         presentImage = GameObject.FindGameObjectWithTag(tagPresentImage);
 
-        text = GameObject.FindGameObjectWithTag(textTag);
+        presentObject = GameObject.FindGameObjectWithTag(tagPresent);
+        pastObject = GameObject.FindGameObjectWithTag(tagPast);
+
     }
 
     public override void OnStartServer()
@@ -147,7 +146,6 @@ public class PlayerScript : NetworkBehaviour
 
     private void Update()
     {
-        Text textComponent = text.GetComponent<Text>();
 
         if (stisnuo1 && stisnuo2)
         {
@@ -218,36 +216,7 @@ public class PlayerScript : NetworkBehaviour
         {
             CmdPresentText();
         }
-        else if (textComponent.text.Equals(targetText, System.StringComparison.OrdinalIgnoreCase) && !textPrviPuta)
-        {
-            if (authority)
-            {
-                CmdDoorGore();
-                textPrviPuta = true;
-            }
-        }
-        else if (vrataOtvorena && !vrataOtvorenaPrviPuta)
-        {
-            if (authority)
-            {
-                CmdDoorGoreNapokon();
-                vrataOtvorenaPrviPuta = true;
-            }
-        }
 
-    }
-    [Command]
-    private void CmdDoorGore()
-    {
-        Debug.LogError("CmdDoorGore");
-        vrataOtvorena = true;
-    }
-    [Command]
-    private void CmdDoorGoreNapokon()
-    {
-        Debug.LogError("Gotovo -> Velika soba");
-        Animator animator = vrataVelikaSobaObject.GetComponent<Animator>();
-        animator.SetBool("stisnut", false);
     }
 
     [Command]
@@ -555,6 +524,17 @@ public class PlayerScript : NetworkBehaviour
         presentText3.GetComponent<TMP_Text>().color = Color.cyan;
 
         presentImage.GetComponent<Image>().sprite = pastSprite;
+
+        for(int i = 0; i<presentObject.transform.childCount; i++)
+        {
+            Transform child  = presentObject.transform.GetChild(i);
+            child.gameObject.SetActive(false);
+        }
+        for (int i = 0; i < pastObject.transform.childCount; i++)
+        {
+            Transform child = pastObject.transform.GetChild(i);
+            child.gameObject.SetActive(true);
+        }
     }
     [ClientRpc]
     public void RpcPresentText()
@@ -567,5 +547,16 @@ public class PlayerScript : NetworkBehaviour
         presentText3.GetComponent<TMP_Text>().color = Color.yellow;
 
         presentImage.GetComponent<Image>().sprite = presentSprite;
+
+        for (int i = 0; i < presentObject.transform.childCount; i++)
+        {
+            Transform child = presentObject.transform.GetChild(i);
+            child.gameObject.SetActive(true);
+        }
+        for (int i = 0; i < pastObject.transform.childCount; i++)
+        {
+            Transform child = pastObject.transform.GetChild(i);
+            child.gameObject.SetActive(false);
+        }
     }
 }

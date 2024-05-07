@@ -27,6 +27,8 @@ TagManager:
   - Button3
   - Button4
   - DoorGore
+  - Present
+  - Past
   layers:
   - Default
   - TransparentFX
