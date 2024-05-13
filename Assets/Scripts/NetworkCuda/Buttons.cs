@@ -192,4 +192,35 @@ public class Buttons : NetworkBehaviour
         playerScript.CmdPresent();
     }
 
+    //PAST -> pocetak
+    public void PritisnuoUPast1()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdPritisnuoPast1();
+    }
+
+    public void PritisnuoUPast2()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdPritisnuoPast2();
+    }
+
+    public void OtpustioUPast1()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdOtpustioPast1();
+    }
+
+    public void OtpustioUPast2()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdOtpustioPast2();
+    }
+
+    //PAST -> kraj
+
 }

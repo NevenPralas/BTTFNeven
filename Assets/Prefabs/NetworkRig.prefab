@@ -25017,6 +25017,10 @@ MonoBehaviour:
   tagPresentImage: PresentImage
   pastSprite: {fileID: 21300000, guid: a3fa9ef843d5547448522a1d8b0796b7, type: 3}
   presentSprite: {fileID: 21300000, guid: 93a5683b103bba04a8863c17922ac74e, type: 3}
+  tagPresent: Present
+  tagPast: Past
+  SkyboxPast: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
+  SkyboxPresent: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0

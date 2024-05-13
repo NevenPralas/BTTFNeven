@@ -29,6 +29,14 @@ TagManager:
   - DoorGore
   - Present
   - Past
+  - PastZid11
+  - PastZid12
+  - PastZid13
+  - PastZid14
+  - PastZid21
+  - PastZid22
+  - PastZid23
+  - PastZid24
   layers:
   - Default
   - TransparentFX

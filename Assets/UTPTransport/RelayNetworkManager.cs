@@ -1,10 +1,14 @@
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Mirror;
 
 using UnityEngine;
 using Unity.Services.Relay.Models;
+using UnityEngine.Experimental.Playables;
+using UnityEngine.UI;
+
 
 namespace Utp
 {
@@ -16,13 +20,17 @@ namespace Utp
 		/// Server's join code if using Relay.
 		/// </summary>
 		public string relayJoinCode = "";
+		public GameObject relayJoinText1;
+		public GameObject relayJoinText2;
 
-      //  public GameObject gate;
+		public GameObject upisujemKod;
 
-      /*  public override void OnClientConnect()
-        {
-            gate.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
-        } */
+        //  public GameObject gate;
+
+        /*  public override void OnClientConnect()
+          {
+              gate.GetComponent<Transform>().rotation = Quaternion.Euler(0, 180, 0);
+          } */
 
         public override void Awake()
 		{
@@ -108,9 +116,12 @@ namespace Utp
 			{
 				relayJoinCode = joinCode;
 				// Ovo dolje inace ne treba, samo za development build
-				Debug.LogError(joinCode);
+				//Debug.LogError(joinCode);
 
-				StartHost();
+				relayJoinText1.GetComponent<Text>().text = joinCode;
+                relayJoinText2.GetComponent<Text>().text = joinCode;
+
+                StartHost();
 			},
 			() =>
 			{
@@ -132,6 +143,7 @@ namespace Utp
 		/// </summary>
 		public void JoinRelayServer()
 		{
+			relayJoinCode = upisujemKod.GetComponent<Text>().text;
 			utpTransport.useRelay = true;
 			utpTransport.ConfigureClientWithJoinCode(relayJoinCode,
 			() =>

@@ -98,8 +98,21 @@ public class PlayerScript : NetworkBehaviour
     private GameObject presentObject;
     private GameObject pastObject;
 
-    
 
+    public Material SkyboxPast;
+    public Material SkyboxPresent;
+
+    //PAST -> pocetak
+
+    [SyncVar]
+    public bool clickPast1 = false;
+    [SyncVar]
+    public bool clickPast2 = false;
+
+    private GameObject pastZid11; private GameObject pastZid12; private GameObject pastZid13; private GameObject pastZid14;
+    private GameObject pastZid21; private GameObject pastZid22; private GameObject pastZid23; private GameObject pastZid24;
+
+    //PAST -> kraj
 
     private void Start()
     {
@@ -114,6 +127,15 @@ public class PlayerScript : NetworkBehaviour
 
         presentObject = GameObject.FindGameObjectWithTag(tagPresent);
         pastObject = GameObject.FindGameObjectWithTag(tagPast);
+
+        pastZid11 = GameObject.FindGameObjectWithTag("PastZid11");
+        pastZid12 = GameObject.FindGameObjectWithTag("PastZid12");
+        pastZid13 = GameObject.FindGameObjectWithTag("PastZid13");
+        pastZid14 = GameObject.FindGameObjectWithTag("PastZid14");
+        pastZid21 = GameObject.FindGameObjectWithTag("PastZid21");
+        pastZid22 = GameObject.FindGameObjectWithTag("PastZid22");
+        pastZid23 = GameObject.FindGameObjectWithTag("PastZid23");
+        pastZid24 = GameObject.FindGameObjectWithTag("PastZid24");
 
     }
 
@@ -215,6 +237,12 @@ public class PlayerScript : NetworkBehaviour
         else if(clickPresent && !clickPocetak)
         {
             CmdPresentText();
+        }
+        
+        if(clickPast1 && clickPast2)
+        {
+            Debug.LogError("Poziv");
+            CmdOtvoriProlaz();
         }
 
     }
@@ -523,6 +551,8 @@ public class PlayerScript : NetworkBehaviour
         presentText3.GetComponent<TMP_Text>().text = "PAST";
         presentText3.GetComponent<TMP_Text>().color = Color.cyan;
 
+        RenderSettings.skybox = SkyboxPast;
+
         presentImage.GetComponent<Image>().sprite = pastSprite;
 
         for(int i = 0; i<presentObject.transform.childCount; i++)
@@ -546,6 +576,8 @@ public class PlayerScript : NetworkBehaviour
         presentText3.GetComponent<TMP_Text>().text = "PRESENT";
         presentText3.GetComponent<TMP_Text>().color = Color.yellow;
 
+        RenderSettings.skybox = SkyboxPresent;
+
         presentImage.GetComponent<Image>().sprite = presentSprite;
 
         for (int i = 0; i < presentObject.transform.childCount; i++)
@@ -559,4 +591,55 @@ public class PlayerScript : NetworkBehaviour
             child.gameObject.SetActive(false);
         }
     }
+
+    // PAST -> pocetak
+
+    [Command]
+    public void CmdPritisnuoPast1() {
+        clickPast1 = true;
+    }
+
+    [Command]
+    public void CmdPritisnuoPast2()
+    {
+        clickPast2 = true;
+    }
+
+    [Command]
+    public void CmdOtpustioPast1()
+    {
+        clickPast1 = false;
+    }
+
+    [Command]
+    public void CmdOtpustioPast2()
+    {
+        clickPast2 = false;
+    }
+
+    [Command]
+    public void CmdOtvoriProlaz()
+
+    {
+        Debug.LogError("PozivCMD");
+        RpcOtvoriProlaz();
+    }
+
+    [ClientRpc]
+    public void RpcOtvoriProlaz()
+    {
+        Debug.LogError("PozivRPC");
+
+        pastZid11.GetComponent<MeshRenderer>().enabled = false; pastZid11.GetComponent<MeshCollider>().enabled = false;
+        pastZid12.GetComponent<MeshRenderer>().enabled = false; pastZid12.GetComponent<MeshCollider>().enabled = false;
+        pastZid13.GetComponent<MeshRenderer>().enabled = true; pastZid13.GetComponent<MeshCollider>().enabled = true;
+        pastZid14.GetComponent<MeshRenderer>().enabled = true; pastZid14.GetComponent<MeshCollider>().enabled = true;
+
+        pastZid21.GetComponent<MeshRenderer>().enabled = false; pastZid21.GetComponent<MeshCollider>().enabled = false;
+        pastZid22.GetComponent<MeshRenderer>().enabled = false; pastZid22.GetComponent<MeshCollider>().enabled = false;
+        pastZid23.GetComponent<MeshRenderer>().enabled = true; pastZid23.GetComponent<MeshCollider>().enabled = true;
+        pastZid24.GetComponent<MeshRenderer>().enabled = true; pastZid24.GetComponent<MeshCollider>().enabled = true;
+    }
+
+    // PAST -> kraj
 }
