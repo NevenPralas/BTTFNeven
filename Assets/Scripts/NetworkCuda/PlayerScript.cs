@@ -1,3 +1,4 @@
+using BNG;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -114,6 +115,24 @@ public class PlayerScript : NetworkBehaviour
 
     //PAST -> kraj
 
+    private GameObject snapPoint1;
+    private GameObject snapPoint2;
+    private GameObject snapPoint3;
+    private GameObject cube6;
+    private GameObject cube2;
+    private GameObject cube4;
+
+    public bool prvi = false;
+    public bool drugi = false;
+    public bool treci = false;
+
+    public bool prviPrviPuta = false;
+    public bool drugiPrviPuta = false;
+    public bool treciPrviPuta = false;
+
+    public GameObject leverLijevi;
+    private GameObject leverLijeviObject;
+
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
@@ -136,6 +155,15 @@ public class PlayerScript : NetworkBehaviour
         pastZid22 = GameObject.FindGameObjectWithTag("PastZid22");
         pastZid23 = GameObject.FindGameObjectWithTag("PastZid23");
         pastZid24 = GameObject.FindGameObjectWithTag("PastZid24");
+
+
+        snapPoint1 = GameObject.FindGameObjectWithTag("SnapPoint1");
+        snapPoint2 = GameObject.FindGameObjectWithTag("SnapPoint2");
+        snapPoint3 = GameObject.FindGameObjectWithTag("SnapPoint3");
+
+        cube6 = GameObject.FindGameObjectWithTag("Cube6");
+        cube2 = GameObject.FindGameObjectWithTag("Cube2");
+        cube4 = GameObject.FindGameObjectWithTag("Cube4");
 
     }
 
@@ -162,6 +190,7 @@ public class PlayerScript : NetworkBehaviour
             NetworkServer.Spawn(door1Object);
 
             
+
 
         }
     }
@@ -245,6 +274,67 @@ public class PlayerScript : NetworkBehaviour
             CmdOtvoriProlaz();
         }
 
+
+        if (snapPoint1.GetComponent<SnapZone>().HeldItem == cube6.GetComponent<Grabbable>() && !prviPrviPuta)
+        {
+
+            Debug.LogError("Greska1");
+            prviPrviPuta = true;
+            prvi = true;
+
+
+        }
+        else if (snapPoint1.GetComponent<SnapZone>().HeldItem != cube6.GetComponent<Grabbable>() && prviPrviPuta)
+        {
+            Debug.LogError("Super1");
+            prviPrviPuta = false;
+            prvi = false;
+        }
+
+        if (snapPoint2.GetComponent<SnapZone>().HeldItem == cube2.GetComponent<Grabbable>() && !drugiPrviPuta)
+        {
+
+            Debug.LogError("Greska2");
+            drugiPrviPuta = true;
+            drugi = true;
+
+        }
+        else if (snapPoint2.GetComponent<SnapZone>().HeldItem != cube2.GetComponent<Grabbable>() && drugiPrviPuta)
+        {
+            Debug.LogError("Super2");
+            drugiPrviPuta = false;
+            drugi = false;
+        }
+
+        if (snapPoint3.GetComponent<SnapZone>().HeldItem == cube4.GetComponent<Grabbable>() && !treciPrviPuta)
+        {
+
+            Debug.LogError("Greska3");
+            treciPrviPuta = true;
+            treci = true;
+
+        }
+        else if (snapPoint3.GetComponent<SnapZone>().HeldItem != cube4.GetComponent<Grabbable>() && treciPrviPuta)
+        {
+            Debug.LogError("Super3");
+            treciPrviPuta = false;
+            treci = false;
+        }
+
+        if (prvi && drugi && treci)
+        {
+            prvi = false; drugi = false; treci = false;
+            Debug.LogError("TO JE TO!");
+            CmdServer();
+        }
+
+    }
+
+    [Command]
+    private void CmdServer()
+    {
+        leverLijeviObject = Instantiate(leverLijevi);
+        NetworkServer.Spawn(leverLijeviObject);
     }
 
     [Command]

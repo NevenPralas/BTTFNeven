@@ -25021,6 +25021,16 @@ MonoBehaviour:
   tagPast: Past
   SkyboxPast: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
   SkyboxPresent: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
+  clickPast1: 0
+  clickPast2: 0
+  prvi: 0
+  drugi: 0
+  treci: 0
+  prviPrviPuta: 0
+  drugiPrviPuta: 0
+  treciPrviPuta: 0
+  leverLijevi: {fileID: 6634636369600645675, guid: 23c264497056e6a4eabf0cdc55eaab93,
+    type: 3}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0

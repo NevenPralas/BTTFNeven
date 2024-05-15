@@ -37,6 +37,12 @@ TagManager:
   - PastZid22
   - PastZid23
   - PastZid24
+  - SnapPoint1
+  - SnapPoint2
+  - SnapPoint3
+  - Cube6
+  - Cube2
+  - Cube4
   layers:
   - Default
   - TransparentFX
