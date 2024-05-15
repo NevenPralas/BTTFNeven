@@ -221,6 +221,19 @@ public class Buttons : NetworkBehaviour
         playerScript.CmdOtpustioPast2();
     }
 
+    public void Sklopka1()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdSklopka1();
+    }
+
+    public void Sklopka2()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerScript = networkIdentity.GetComponent<PlayerScript>();
+        playerScript.CmdSklopka2();
+    }
     //PAST -> kraj
 
 }

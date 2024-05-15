@@ -1,4 +1,5 @@
 using BNG;
+using JetBrains.Annotations;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -133,6 +134,32 @@ public class PlayerScript : NetworkBehaviour
     public GameObject leverLijevi;
     private GameObject leverLijeviObject;
 
+    private GameObject snapPoint4;
+    private GameObject snapPoint5;
+    private GameObject snapPoint6;
+    private GameObject cube7R;
+    private GameObject cube2R;
+    private GameObject cube8R;
+
+    public bool prviR = false;
+    public bool drugiR = false;
+    public bool treciR = false;
+
+    public bool prviPrviPutaR = false;
+    public bool drugiPrviPutaR = false;
+    public bool treciPrviPutaR = false;
+
+    public GameObject leverDesni;
+    private GameObject leverDesniObject;
+
+    private GameObject beam1;
+    private GameObject beam2;
+    private GameObject beam3;
+
+    [SyncVar]
+    public bool sklopka1 = false;
+    [SyncVar]
+    public bool sklopka2 = false;
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
@@ -165,6 +192,17 @@ public class PlayerScript : NetworkBehaviour
         cube2 = GameObject.FindGameObjectWithTag("Cube2");
         cube4 = GameObject.FindGameObjectWithTag("Cube4");
 
+        snapPoint4 = GameObject.FindGameObjectWithTag("SnapPoint4");
+        snapPoint5 = GameObject.FindGameObjectWithTag("SnapPoint5");
+        snapPoint6 = GameObject.FindGameObjectWithTag("SnapPoint6");
+
+        cube7R = GameObject.FindGameObjectWithTag("Cube7R");
+        cube2R = GameObject.FindGameObjectWithTag("Cube2R");
+        cube8R = GameObject.FindGameObjectWithTag("Cube8R");
+
+        beam1 = GameObject.FindGameObjectWithTag("Beam1");
+        beam2 = GameObject.FindGameObjectWithTag("Beam2");
+        beam3 = GameObject.FindGameObjectWithTag("Beam3");
     }
 
     public override void OnStartServer()
@@ -328,6 +366,100 @@ public class PlayerScript : NetworkBehaviour
             CmdServer();
         }
 
+        if (snapPoint6.GetComponent<SnapZone>().HeldItem == cube7R.GetComponent<Grabbable>() && !prviPrviPutaR)
+        {
+
+            Debug.LogError("Greska1");
+            prviPrviPutaR = true;
+            prviR = true;
+
+
+        }
+        else if (snapPoint6.GetComponent<SnapZone>().HeldItem != cube7R.GetComponent<Grabbable>() && prviPrviPutaR)
+        {
+            Debug.LogError("Super1");
+            prviPrviPutaR = false;
+            prviR = false;
+        }
+
+        if (snapPoint5.GetComponent<SnapZone>().HeldItem == cube2R.GetComponent<Grabbable>() && !drugiPrviPutaR)
+        {
+
+            Debug.LogError("Greska2");
+            drugiPrviPutaR = true;
+            drugiR = true;
+
+        }
+        else if (snapPoint5.GetComponent<SnapZone>().HeldItem != cube2R.GetComponent<Grabbable>() && drugiPrviPutaR)
+        {
+            Debug.LogError("Super2");
+            drugiPrviPutaR = false;
+            drugiR = false;
+        }
+
+        if (snapPoint4.GetComponent<SnapZone>().HeldItem == cube8R.GetComponent<Grabbable>() && !treciPrviPutaR)
+        {
+
+            Debug.LogError("Greska3");
+            treciPrviPutaR = true;
+            treciR = true;
+
+        }
+        else if (snapPoint4.GetComponent<SnapZone>().HeldItem != cube8R.GetComponent<Grabbable>() && treciPrviPutaR)
+        {
+            Debug.LogError("Super3");
+            treciPrviPutaR = false;
+            treciR = false;
+        }
+
+        if (prviR && drugiR && treciR)
+        {
+            prviR = false; drugiR = false; treciR = false;
+            Debug.LogError("TO JE TO!");
+            CmdServerR();
+        }
+
+        if(sklopka1 && sklopka2)
+        {
+            if (authority)
+            {
+                CmdMicanjeBeamova();
+            }
+        }
+
+    }
+
+    [Command]
+    private void CmdMicanjeBeamova()
+    {
+        Debug.LogError("OtisliCmd");
+        RpcMicanjeBeamova();
+    }
+    [ClientRpc]
+    private void RpcMicanjeBeamova()
+    {
+        Debug.LogError("OtisliRpc");
+        beam1.GetComponent<MeshRenderer>().enabled = false;
+        beam1.GetComponent<MeshCollider>().enabled = false;
+
+        beam2.GetComponent<MeshRenderer>().enabled = false;
+        beam2.GetComponent<MeshCollider>().enabled = false;
+
+        beam3.GetComponent<MeshRenderer>().enabled = false;
+        beam3.GetComponent<MeshCollider>().enabled = false;
+    }
+    [Command]
+    public void CmdSklopka1()
+    {
+        Debug.LogError(sklopka1);
+        sklopka1 = true;
+    }
+
+    [Command]
+    public void CmdSklopka2()
+    {
+        Debug.LogError(sklopka2);
+        sklopka2 = true;
     }
 
     [Command]
@@ -335,6 +467,13 @@ public class PlayerScript : NetworkBehaviour
     {
         leverLijeviObject = Instantiate(leverLijevi);
         NetworkServer.Spawn(leverLijeviObject);
+    }
+
+    [Command]
+    private void CmdServerR()
+    {
+        leverDesniObject = Instantiate(leverDesni);
+        NetworkServer.Spawn(leverDesniObject);
     }
 
     [Command]

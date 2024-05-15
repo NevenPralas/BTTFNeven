@@ -43,6 +43,15 @@ TagManager:
   - Cube6
   - Cube2
   - Cube4
+  - SnapPoint4
+  - SnapPoint5
+  - SnapPoint6
+  - Cube7R
+  - Cube2R
+  - Cube8R
+  - Beam1
+  - Beam2
+  - Beam3
   layers:
   - Default
   - TransparentFX

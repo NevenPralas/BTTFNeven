@@ -25031,6 +25031,14 @@ MonoBehaviour:
   treciPrviPuta: 0
   leverLijevi: {fileID: 6634636369600645675, guid: 23c264497056e6a4eabf0cdc55eaab93,
     type: 3}
+  prviR: 0
+  drugiR: 0
+  treciR: 0
+  prviPrviPutaR: 0
+  drugiPrviPutaR: 0
+  treciPrviPutaR: 0
+  leverDesni: {fileID: 4263534859958772229, guid: 0711741437b50b345a9f00e939b24058,
+    type: 3}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0
