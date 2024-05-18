@@ -312,121 +312,122 @@ public class PlayerScript : NetworkBehaviour
             CmdOtvoriProlaz();
         }
 
+        
 
-        if (snapPoint1.GetComponent<SnapZone>().HeldItem == cube6.GetComponent<Grabbable>() && !prviPrviPuta)
-        {
-
-            Debug.LogError("Greska1");
-            prviPrviPuta = true;
-            prvi = true;
-
-
-        }
-        else if (snapPoint1.GetComponent<SnapZone>().HeldItem != cube6.GetComponent<Grabbable>() && prviPrviPuta)
-        {
-            Debug.LogError("Super1");
-            prviPrviPuta = false;
-            prvi = false;
-        }
-
-        if (snapPoint2.GetComponent<SnapZone>().HeldItem == cube2.GetComponent<Grabbable>() && !drugiPrviPuta)
-        {
-
-            Debug.LogError("Greska2");
-            drugiPrviPuta = true;
-            drugi = true;
-
-        }
-        else if (snapPoint2.GetComponent<SnapZone>().HeldItem != cube2.GetComponent<Grabbable>() && drugiPrviPuta)
-        {
-            Debug.LogError("Super2");
-            drugiPrviPuta = false;
-            drugi = false;
-        }
-
-        if (snapPoint3.GetComponent<SnapZone>().HeldItem == cube4.GetComponent<Grabbable>() && !treciPrviPuta)
-        {
-
-            Debug.LogError("Greska3");
-            treciPrviPuta = true;
-            treci = true;
-
-        }
-        else if (snapPoint3.GetComponent<SnapZone>().HeldItem != cube4.GetComponent<Grabbable>() && treciPrviPuta)
-        {
-            Debug.LogError("Super3");
-            treciPrviPuta = false;
-            treci = false;
-        }
-
-        if (prvi && drugi && treci)
-        {
-            prvi = false; drugi = false; treci = false;
-            Debug.LogError("TO JE TO!");
-            CmdServer();
-        }
-
-        if (snapPoint6.GetComponent<SnapZone>().HeldItem == cube7R.GetComponent<Grabbable>() && !prviPrviPutaR)
-        {
-
-            Debug.LogError("Greska1");
-            prviPrviPutaR = true;
-            prviR = true;
-
-
-        }
-        else if (snapPoint6.GetComponent<SnapZone>().HeldItem != cube7R.GetComponent<Grabbable>() && prviPrviPutaR)
-        {
-            Debug.LogError("Super1");
-            prviPrviPutaR = false;
-            prviR = false;
-        }
-
-        if (snapPoint5.GetComponent<SnapZone>().HeldItem == cube2R.GetComponent<Grabbable>() && !drugiPrviPutaR)
-        {
-
-            Debug.LogError("Greska2");
-            drugiPrviPutaR = true;
-            drugiR = true;
-
-        }
-        else if (snapPoint5.GetComponent<SnapZone>().HeldItem != cube2R.GetComponent<Grabbable>() && drugiPrviPutaR)
-        {
-            Debug.LogError("Super2");
-            drugiPrviPutaR = false;
-            drugiR = false;
-        }
-
-        if (snapPoint4.GetComponent<SnapZone>().HeldItem == cube8R.GetComponent<Grabbable>() && !treciPrviPutaR)
-        {
-
-            Debug.LogError("Greska3");
-            treciPrviPutaR = true;
-            treciR = true;
-
-        }
-        else if (snapPoint4.GetComponent<SnapZone>().HeldItem != cube8R.GetComponent<Grabbable>() && treciPrviPutaR)
-        {
-            Debug.LogError("Super3");
-            treciPrviPutaR = false;
-            treciR = false;
-        }
-
-        if (prviR && drugiR && treciR)
-        {
-            prviR = false; drugiR = false; treciR = false;
-            Debug.LogError("TO JE TO!");
-            CmdServerR();
-        }
-
-        if(sklopka1 && sklopka2)
-        {
-            if (authority)
+            if (snapPoint1.GetComponent<SnapZone>().HeldItem == cube6.GetComponent<Grabbable>() && !prviPrviPuta)
             {
-                CmdMicanjeBeamova();
-            }
-        }
 
+                Debug.LogError("Greska1");
+                prviPrviPuta = true;
+                prvi = true;
+
+
+            }
+            else if (snapPoint1.GetComponent<SnapZone>().HeldItem != cube6.GetComponent<Grabbable>() && prviPrviPuta)
+            {
+                Debug.LogError("Super1");
+                prviPrviPuta = false;
+                prvi = false;
+            }
+
+            if (snapPoint2.GetComponent<SnapZone>().HeldItem == cube2.GetComponent<Grabbable>() && !drugiPrviPuta)
+            {
+
+                Debug.LogError("Greska2");
+                drugiPrviPuta = true;
+                drugi = true;
+
+            }
+            else if (snapPoint2.GetComponent<SnapZone>().HeldItem != cube2.GetComponent<Grabbable>() && drugiPrviPuta)
+            {
+                Debug.LogError("Super2");
+                drugiPrviPuta = false;
+                drugi = false;
+            }
+
+            if (snapPoint3.GetComponent<SnapZone>().HeldItem == cube4.GetComponent<Grabbable>() && !treciPrviPuta)
+            {
+
+                Debug.LogError("Greska3");
+                treciPrviPuta = true;
+                treci = true;
+
+            }
+            else if (snapPoint3.GetComponent<SnapZone>().HeldItem != cube4.GetComponent<Grabbable>() && treciPrviPuta)
+            {
+                Debug.LogError("Super3");
+                treciPrviPuta = false;
+                treci = false;
+            }
+
+            if (prvi && drugi && treci)
+            {
+                prvi = false; drugi = false; treci = false;
+                Debug.LogError("TO JE TO!");
+                CmdServer();
+            }
+
+            if (snapPoint6.GetComponent<SnapZone>().HeldItem == cube7R.GetComponent<Grabbable>() && !prviPrviPutaR)
+            {
+
+                Debug.LogError("Greska1");
+                prviPrviPutaR = true;
+                prviR = true;
+
+
+            }
+            else if (snapPoint6.GetComponent<SnapZone>().HeldItem != cube7R.GetComponent<Grabbable>() && prviPrviPutaR)
+            {
+                Debug.LogError("Super1");
+                prviPrviPutaR = false;
+                prviR = false;
+            }
+
+            if (snapPoint5.GetComponent<SnapZone>().HeldItem == cube2R.GetComponent<Grabbable>() && !drugiPrviPutaR)
+            {
+
+                Debug.LogError("Greska2");
+                drugiPrviPutaR = true;
+                drugiR = true;
+
+            }
+            else if (snapPoint5.GetComponent<SnapZone>().HeldItem != cube2R.GetComponent<Grabbable>() && drugiPrviPutaR)
+            {
+                Debug.LogError("Super2");
+                drugiPrviPutaR = false;
+                drugiR = false;
+            }
+
+            if (snapPoint4.GetComponent<SnapZone>().HeldItem == cube8R.GetComponent<Grabbable>() && !treciPrviPutaR)
+            {
+
+                Debug.LogError("Greska3");
+                treciPrviPutaR = true;
+                treciR = true;
+
+            }
+            else if (snapPoint4.GetComponent<SnapZone>().HeldItem != cube8R.GetComponent<Grabbable>() && treciPrviPutaR)
+            {
+                Debug.LogError("Super3");
+                treciPrviPutaR = false;
+                treciR = false;
+            }
+
+            if (prviR && drugiR && treciR)
+            {
+                prviR = false; drugiR = false; treciR = false;
+                Debug.LogError("TO JE TO!");
+                CmdServerR();
+            }
+
+            if (sklopka1 && sklopka2)
+            {
+                if (authority)
+                {
+                    CmdMicanjeBeamova();
+                }
+            }
+        
     }
 
     [Command]
