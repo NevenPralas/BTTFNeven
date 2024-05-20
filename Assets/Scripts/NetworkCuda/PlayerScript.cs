@@ -860,15 +860,9 @@ public class PlayerScript : NetworkBehaviour
     {
         Debug.LogError("PozivRPC");
 
-        pastZid11.GetComponent<MeshRenderer>().enabled = false; pastZid11.GetComponent<MeshCollider>().enabled = false;
-        pastZid12.GetComponent<MeshRenderer>().enabled = false; pastZid12.GetComponent<MeshCollider>().enabled = false;
-        pastZid13.GetComponent<MeshRenderer>().enabled = true; pastZid13.GetComponent<MeshCollider>().enabled = true;
-        pastZid14.GetComponent<MeshRenderer>().enabled = true; pastZid14.GetComponent<MeshCollider>().enabled = true;
-
-        pastZid21.GetComponent<MeshRenderer>().enabled = false; pastZid21.GetComponent<MeshCollider>().enabled = false;
-        pastZid22.GetComponent<MeshRenderer>().enabled = false; pastZid22.GetComponent<MeshCollider>().enabled = false;
-        pastZid23.GetComponent<MeshRenderer>().enabled = true; pastZid23.GetComponent<MeshCollider>().enabled = true;
-        pastZid24.GetComponent<MeshRenderer>().enabled = true; pastZid24.GetComponent<MeshCollider>().enabled = true;
+        pastZid11.GetComponent<MeshRenderer>().enabled = true; pastZid11.GetComponent<BoxCollider>().enabled = true;
+        pastZid12.GetComponent<MeshRenderer>().enabled = true; pastZid12.GetComponent<BoxCollider>().enabled = true;
+       
     }
 
     // PAST -> kraj
