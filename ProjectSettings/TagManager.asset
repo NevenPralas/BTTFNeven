@@ -52,6 +52,8 @@ TagManager:
   - Beam1
   - Beam2
   - Beam3
+  - SnapPresent
+  - Totem
   layers:
   - Default
   - TransparentFX
