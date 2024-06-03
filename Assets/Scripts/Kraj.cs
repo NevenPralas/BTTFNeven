@@ -8,6 +8,9 @@ public class Kraj : NetworkBehaviour
 {
     private GameObject snapPresent;
     private GameObject totem;
+
+    public GameObject vatra1;
+    public GameObject vatra2;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,5 +39,7 @@ public class Kraj : NetworkBehaviour
     private void RpcKraj()
     {
         Debug.LogError("Kraj RPC");
+        vatra1.SetActive(true);
+        vatra2.SetActive(true);
     }
 }

@@ -1,3 +1,4 @@
+using BNG;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -78,6 +79,7 @@ public class drugoSvitlo : NetworkBehaviour
         if (objektObject != null && objektObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
             rigidbody.constraints |= RigidbodyConstraints.FreezePositionX;
+            objektObject.GetComponent<Grabbable>().enabled = false;
         }
     }
 }

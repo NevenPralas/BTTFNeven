@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using BNG;
 
 public class PrvoSvitlo : NetworkBehaviour
 {
@@ -77,6 +78,7 @@ public class PrvoSvitlo : NetworkBehaviour
         if (objektObject != null && objektObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
             rigidbody.constraints |= RigidbodyConstraints.FreezePositionX;
-        }
+            objektObject.GetComponent<Grabbable>().enabled = false;
     }
+}
 }
