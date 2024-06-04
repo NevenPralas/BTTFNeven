@@ -4,6 +4,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -160,6 +161,11 @@ public class PlayerScript : NetworkBehaviour
     public bool sklopka1 = false;
     [SyncVar]
     public bool sklopka2 = false;
+
+    private GameObject grabPoint1;
+    private GameObject grabPoint2;
+    private GameObject grabPoint3;
+    private GameObject grabPoint4;
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
@@ -203,6 +209,11 @@ public class PlayerScript : NetworkBehaviour
         beam1 = GameObject.FindGameObjectWithTag("Beam1");
         beam2 = GameObject.FindGameObjectWithTag("Beam2");
         beam3 = GameObject.FindGameObjectWithTag("Beam3");
+
+        grabPoint1 = GameObject.FindGameObjectWithTag("GrabPoint1");
+        grabPoint2 = GameObject.FindGameObjectWithTag("GrabPoint2");
+        grabPoint3 = GameObject.FindGameObjectWithTag("GrabPoint3");
+        grabPoint4 = GameObject.FindGameObjectWithTag("GrabPoint4");
     }
 
     public override void OnStartServer()
@@ -420,47 +431,80 @@ public class PlayerScript : NetworkBehaviour
                 CmdServerR();
             }
 
-            if (sklopka1 && sklopka2)
+            if (sklopka1)
             {
-                if (authority)
-                {
-                    CmdMicanjeBeamova();
-                }
+            Debug.LogError("USAO1");
+                CmdMicanjeBeamova();
+                
             }
+
+        if (sklopka2)
+        {
+           
+                Debug.LogError("USAO2");
+                CmdMicanjeBeamova2();
+            
+        }
         
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdMicanjeBeamova()
     {
-        Debug.LogError("OtisliCmd");
+        Debug.LogError("OtisliCmd1");
         RpcMicanjeBeamova();
     }
+
+    [Command(requiresAuthority = false)]
+    private void CmdMicanjeBeamova2()
+    {
+        Debug.LogError("OtisliCmd2");
+        RpcMicanjeBeamova2();
+    }
+
     [ClientRpc]
     private void RpcMicanjeBeamova()
     {
-        Debug.LogError("OtisliRpc");
+        Debug.LogError("OtisliRpc1");
         beam1.GetComponent<MeshRenderer>().enabled = false;
         beam1.GetComponent<MeshCollider>().enabled = false;
 
         beam2.GetComponent<MeshRenderer>().enabled = false;
         beam2.GetComponent<MeshCollider>().enabled = false;
 
+        grabPoint1.GetComponent<MeshRenderer>().enabled = true;
+        grabPoint1.GetComponent<BoxCollider>().enabled = true;
+        grabPoint4.GetComponent<MeshRenderer>().enabled = true;
+        grabPoint4.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    [ClientRpc]
+    private void RpcMicanjeBeamova2()
+    {
+        Debug.LogError("OtisliRpc2");
+
         beam3.GetComponent<MeshRenderer>().enabled = false;
         beam3.GetComponent<MeshCollider>().enabled = false;
+
+        grabPoint3.GetComponent<MeshRenderer>().enabled = true;
+        grabPoint3.GetComponent<BoxCollider>().enabled = true;
+        grabPoint2.GetComponent<MeshRenderer>().enabled = true;
+        grabPoint2.GetComponent<BoxCollider>().enabled = true;
     }
     [Command]
     public void CmdSklopka1()
     {
-        Debug.LogError(sklopka1);
         sklopka1 = true;
+        Debug.LogError("SKLOPKA1: " + sklopka1);
+        Debug.LogError("SKLOPKA2: " + sklopka2);
     }
 
     [Command]
     public void CmdSklopka2()
     {
-        Debug.LogError(sklopka2);
         sklopka2 = true;
+        Debug.LogError("SKLOPKA1: " + sklopka1);
+        Debug.LogError("SKLOPKA2: " + sklopka2);
     }
 
     [Command]

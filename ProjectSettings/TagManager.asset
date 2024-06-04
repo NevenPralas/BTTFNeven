@@ -54,6 +54,10 @@ TagManager:
   - Beam3
   - SnapPresent
   - Totem
+  - GrabPoint1
+  - GrabPoint2
+  - GrabPoint3
+  - GrabPoint4
   layers:
   - Default
   - TransparentFX
