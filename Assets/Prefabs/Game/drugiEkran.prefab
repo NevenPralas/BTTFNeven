@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 6856286022262068380}
   m_Layer: 0
   m_Name: drugiEkran
-  m_TagString: Untagged
+  m_TagString: DrugiEkran
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -166,6 +166,21 @@ public class PlayerScript : NetworkBehaviour
     private GameObject grabPoint2;
     private GameObject grabPoint3;
     private GameObject grabPoint4;
+
+    private GameObject[] prepreka1;
+    private GameObject[] prepreka2;
+
+    private GameObject svitlo1;
+    private GameObject svitlo2;
+    private GameObject svitlo3;
+
+    private GameObject ek1;
+    private GameObject ek2;
+    private GameObject ek3;
+
+    private GameObject slika1;
+    private GameObject slika2;
+    private GameObject slika3;
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
@@ -214,6 +229,21 @@ public class PlayerScript : NetworkBehaviour
         grabPoint2 = GameObject.FindGameObjectWithTag("GrabPoint2");
         grabPoint3 = GameObject.FindGameObjectWithTag("GrabPoint3");
         grabPoint4 = GameObject.FindGameObjectWithTag("GrabPoint4");
+
+        prepreka1 = GameObject.FindGameObjectsWithTag("Prepreka1");
+        prepreka2 = GameObject.FindGameObjectsWithTag("Prepreka2");
+
+        svitlo1 = GameObject.FindGameObjectWithTag("PrvoSvitlo");
+        svitlo2 = GameObject.FindGameObjectWithTag("DrugoSvitlo");
+        svitlo3 = GameObject.FindGameObjectWithTag("TreceSvitlo");
+
+        ek1 = GameObject.FindGameObjectWithTag("PrviEkran");
+        ek2 = GameObject.FindGameObjectWithTag("DrugiEkran");
+        ek3 = GameObject.FindGameObjectWithTag("TreciEkran");
+
+        slika1 = GameObject.FindGameObjectWithTag("PrvaSlika");
+        slika2 = GameObject.FindGameObjectWithTag("DrugaSlika");
+        slika3 = GameObject.FindGameObjectWithTag("TrecaSlika");
     }
 
     public override void OnStartServer()
@@ -476,6 +506,10 @@ public class PlayerScript : NetworkBehaviour
         grabPoint1.GetComponent<BoxCollider>().enabled = true;
         grabPoint4.GetComponent<MeshRenderer>().enabled = true;
         grabPoint4.GetComponent<BoxCollider>().enabled = true;
+
+        for(int i = 0; i<prepreka1.Length; i++){
+            prepreka1[i].GetComponent<BoxCollider>().enabled = false;
+        }
     }
 
     [ClientRpc]
@@ -490,6 +524,10 @@ public class PlayerScript : NetworkBehaviour
         grabPoint3.GetComponent<BoxCollider>().enabled = true;
         grabPoint2.GetComponent<MeshRenderer>().enabled = true;
         grabPoint2.GetComponent<BoxCollider>().enabled = true;
+
+        for(int i = 0; i<prepreka2.Length; i++){
+            prepreka2[i].GetComponent<BoxCollider>().enabled = false;
+        }
     }
     [Command]
     public void CmdSklopka1()
@@ -839,6 +877,34 @@ public class PlayerScript : NetworkBehaviour
             Transform child = pastObject.transform.GetChild(i);
             child.gameObject.SetActive(true);
         }
+if(svitlo1!=null)
+        svitlo1.GetComponent<MeshRenderer>().enabled = false;
+if(svitlo2!=null)
+        svitlo2.GetComponent<MeshRenderer>().enabled = false;
+if(svitlo3!=null)
+        svitlo3.GetComponent<MeshRenderer>().enabled = false;
+
+if(slika1!=null)
+        slika1.GetComponent<MeshRenderer>().enabled = false;
+if(slika2!=null)
+        slika2.GetComponent<MeshRenderer>().enabled = false;
+if(slika3!=null)
+        slika3.GetComponent<MeshRenderer>().enabled = false;
+if(ek1!=null){
+        Vector3 currentPosition1 = ek1.transform.position;
+        currentPosition1.y = 0;
+        ek1.transform.position = currentPosition1;
+}
+if(ek2!=null){
+        Vector3 currentPosition2 = ek2.transform.position;
+        currentPosition2.y = 0;
+        ek2.transform.position = currentPosition2;
+}
+if(ek3!=null){
+Vector3 currentPosition3 = ek3.transform.position;
+        currentPosition3.y = 0;
+        ek3.transform.position = currentPosition3;
+}
     }
     [ClientRpc]
     public void RpcPresentText()
@@ -864,6 +930,35 @@ public class PlayerScript : NetworkBehaviour
             Transform child = pastObject.transform.GetChild(i);
             child.gameObject.SetActive(false);
         }
+if(svitlo1!=null)
+        svitlo1.GetComponent<MeshRenderer>().enabled = true;
+if(svitlo2!=null)
+        svitlo2.GetComponent<MeshRenderer>().enabled = true;
+if(svitlo3!=null)
+        svitlo3.GetComponent<MeshRenderer>().enabled = true;
+
+if(slika1!=null)
+        slika1.GetComponent<MeshRenderer>().enabled = true;
+if(slika2!=null)        
+        slika2.GetComponent<MeshRenderer>().enabled = true;
+if(slika3!=null)        
+        slika3.GetComponent<MeshRenderer>().enabled = true;
+
+if(ek1!=null){
+        Vector3 currentPosition1 = ek1.transform.position;
+        currentPosition1.y = 17.379f;
+        ek1.transform.position = currentPosition1;
+}
+if(ek2!=null){
+    Vector3 currentPosition2 = ek2.transform.position;
+        currentPosition2.y = 17.379f;
+        ek2.transform.position = currentPosition2;
+}
+if(ek3!=null){
+    Vector3 currentPosition3 = ek3.transform.position;
+        currentPosition3.y = 17.379f;
+        ek3.transform.position = currentPosition3;
+}
     }
 
     // PAST -> pocetak

@@ -58,6 +58,14 @@ TagManager:
   - GrabPoint2
   - GrabPoint3
   - GrabPoint4
+  - Prepreka1
+  - Prepreka2
+  - PrviEkran
+  - DrugiEkran
+  - TreciEkran
+  - PrvaSlika
+  - DrugaSlika
+  - TrecaSlika
   layers:
   - Default
   - TransparentFX

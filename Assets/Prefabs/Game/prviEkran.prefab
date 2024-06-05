@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 299098092609026866}
   m_Layer: 0
   m_Name: prviEkran
-  m_TagString: Untagged
+  m_TagString: PrviEkran
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
