@@ -178,9 +178,9 @@ public class PlayerScript : NetworkBehaviour
     private GameObject ek2;
     private GameObject ek3;
 
-    private GameObject slika1;
-    private GameObject slika2;
-    private GameObject slika3;
+    private GameObject[] slika1;
+    private GameObject[] slika2;
+    private GameObject[] slika3;
     private void Start()
     {
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
@@ -236,14 +236,6 @@ public class PlayerScript : NetworkBehaviour
         svitlo1 = GameObject.FindGameObjectWithTag("PrvoSvitlo");
         svitlo2 = GameObject.FindGameObjectWithTag("DrugoSvitlo");
         svitlo3 = GameObject.FindGameObjectWithTag("TreceSvitlo");
-
-        ek1 = GameObject.FindGameObjectWithTag("PrviEkran");
-        ek2 = GameObject.FindGameObjectWithTag("DrugiEkran");
-        ek3 = GameObject.FindGameObjectWithTag("TreciEkran");
-
-        slika1 = GameObject.FindGameObjectWithTag("PrvaSlika");
-        slika2 = GameObject.FindGameObjectWithTag("DrugaSlika");
-        slika3 = GameObject.FindGameObjectWithTag("TrecaSlika");
     }
 
     public override void OnStartServer()
@@ -276,6 +268,14 @@ public class PlayerScript : NetworkBehaviour
 
     private void Update()
     {
+
+        ek1 = GameObject.FindGameObjectWithTag("PrviEkran");
+        ek2 = GameObject.FindGameObjectWithTag("DrugiEkran");
+        ek3 = GameObject.FindGameObjectWithTag("TreciEkran");
+
+        slika1 = GameObject.FindGameObjectsWithTag("PrvaSlika");
+        slika2 = GameObject.FindGameObjectsWithTag("DrugaSlika");
+        slika3 = GameObject.FindGameObjectsWithTag("TrecaSlika");
 
         if (stisnuo1 && stisnuo2)
         {
@@ -884,12 +884,27 @@ if(svitlo2!=null)
 if(svitlo3!=null)
         svitlo3.GetComponent<MeshRenderer>().enabled = false;
 
-if(slika1!=null)
-        slika1.GetComponent<MeshRenderer>().enabled = false;
-if(slika2!=null)
-        slika2.GetComponent<MeshRenderer>().enabled = false;
-if(slika3!=null)
-        slika3.GetComponent<MeshRenderer>().enabled = false;
+        if (slika1 != null)
+        {
+            for(int i = 0; i<slika1.Length; i++)
+            {
+                slika1[i].GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+        if (slika2 != null)
+        {
+            for (int i = 0; i < slika2.Length; i++)
+            {
+                slika2[i].GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+        if (slika3 != null)
+        {
+            for (int i = 0; i < slika3.Length; i++)
+            {
+                slika3[i].GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
 if(ek1!=null){
         Vector3 currentPosition1 = ek1.transform.position;
         currentPosition1.y = 0;
@@ -937,14 +952,29 @@ if(svitlo2!=null)
 if(svitlo3!=null)
         svitlo3.GetComponent<MeshRenderer>().enabled = true;
 
-if(slika1!=null)
-        slika1.GetComponent<MeshRenderer>().enabled = true;
-if(slika2!=null)        
-        slika2.GetComponent<MeshRenderer>().enabled = true;
-if(slika3!=null)        
-        slika3.GetComponent<MeshRenderer>().enabled = true;
+        if (slika1 != null)
+        {
+            for (int i = 0; i < slika1.Length; i++)
+            {
+                slika1[i].GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
+        if (slika2 != null)
+        {
+            for (int i = 0; i < slika2.Length; i++)
+            {
+                slika2[i].GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
+        if (slika3 != null)
+        {
+            for (int i = 0; i < slika3.Length; i++)
+            {
+                slika3[i].GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
 
-if(ek1!=null){
+        if (ek1!=null){
         Vector3 currentPosition1 = ek1.transform.position;
         currentPosition1.y = 17.379f;
         ek1.transform.position = currentPosition1;

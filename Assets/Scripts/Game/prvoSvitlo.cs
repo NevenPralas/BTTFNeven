@@ -45,6 +45,7 @@ public class PrvoSvitlo : NetworkBehaviour
                     treceSvitlo.GetComponent<MeshRenderer>().sharedMaterials[0].name.Contains("Red") && prviPuta)
                 {
                     CmdStvori();
+                    prviPuta = false;
                 }
             }
         }
@@ -59,12 +60,13 @@ public class PrvoSvitlo : NetworkBehaviour
     {
         if (slika1 != null)
         {
+            prviPuta = false;
             slika1Object = Instantiate(slika1);
             NetworkServer.Spawn(slika1Object);
 
             RpcFreezeX();
 
-            prviPuta = false;
+            
         }
         else
         {
