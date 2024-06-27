@@ -34,9 +34,14 @@ public class pojavaSvega : NetworkBehaviour
 
     Animator animator;
 
+    private GameObject zvuk2;
+
 
     private void Start()
     {
+        zvuk2 = GameObject.FindGameObjectWithTag("Zvuk2");
+
+        
         text = GameObject.FindGameObjectWithTag(textTag);
         lampa1 = GameObject.FindGameObjectWithTag(targetLampa1);
         lampa2 = GameObject.FindGameObjectWithTag(targetLampa2);
@@ -78,6 +83,9 @@ public class pojavaSvega : NetworkBehaviour
     [ClientRpc]
     private void RpcStvori()
     {
+        zvuk2.GetComponent<AudioSource>().enabled = true;
+
+
         this.gameObject.GetComponent<TMP_Text>().enabled = true;
         lampa1.GetComponent<MeshRenderer>().enabled = true;
         lampa2.GetComponent<MeshRenderer>().enabled = true;

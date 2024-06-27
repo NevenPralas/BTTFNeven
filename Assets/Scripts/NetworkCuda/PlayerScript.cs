@@ -181,8 +181,16 @@ public class PlayerScript : NetworkBehaviour
     private GameObject[] slika1;
     private GameObject[] slika2;
     private GameObject[] slika3;
+
+    public AudioClip pastZvuk;
+    public AudioClip presentZvuk;
+    private GameObject zvuk;
+
     private void Start()
     {
+
+        zvuk = GameObject.FindGameObjectWithTag("Zvuk");
+
         TMText = GameObject.FindGameObjectWithTag(tagTMText);
         buttonPast = GameObject.FindGameObjectWithTag(tagButtonPast);
         buttonPresent = GameObject.FindGameObjectWithTag(tagButtonPresent);
@@ -856,6 +864,9 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcPastText()
     {
+
+        zvuk.GetComponent<AudioSource>().clip = pastZvuk;
+
         presentText1.GetComponent<TMP_Text>().text = "PAST";
         presentText1.GetComponent<TMP_Text>().color = Color.cyan;
         presentText2.GetComponent<TMP_Text>().text = "PAST";
@@ -924,6 +935,8 @@ Vector3 currentPosition3 = ek3.transform.position;
     [ClientRpc]
     public void RpcPresentText()
     {
+
+        zvuk.GetComponent<AudioSource>().clip = presentZvuk;
         presentText1.GetComponent<TMP_Text>().text = "PRESENT";
         presentText1.GetComponent<TMP_Text>().color = Color.yellow;
         presentText2.GetComponent<TMP_Text>().text = "PRESENT";

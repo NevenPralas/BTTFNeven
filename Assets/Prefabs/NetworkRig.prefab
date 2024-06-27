@@ -25041,6 +25041,9 @@ MonoBehaviour:
     type: 3}
   sklopka1: 0
   sklopka2: 0
+  pastZvuk: {fileID: 8300000, guid: c7816ae2af5e8e644998389bf796b856, type: 3}
+  presentZvuk: {fileID: 8300000, guid: b673200c3b50eca4ab66cdbf9bcf8c59, type: 3}
+  zvuk: {fileID: 1566968121460641803, guid: 9ba88d804d8bd7040877b295a590f730, type: 3}
 --- !u!1 &3801920530427085361
 GameObject:
   m_ObjectHideFlags: 0

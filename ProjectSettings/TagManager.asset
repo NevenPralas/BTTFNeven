@@ -66,6 +66,8 @@ TagManager:
   - PrvaSlika
   - DrugaSlika
   - TrecaSlika
+  - Zvuk
+  - Zvuk2
   layers:
   - Default
   - TransparentFX
