@@ -79,7 +79,7 @@ public class PrvoSvitlo : NetworkBehaviour
     {
         if (objektObject != null && objektObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
-            rigidbody.constraints |= RigidbodyConstraints.FreezePositionX;
+            objektObject.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotationX;
             objektObject.GetComponent<Grabbable>().enabled = false;
     }
 }
