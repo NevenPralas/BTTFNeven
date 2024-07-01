@@ -865,8 +865,6 @@ public class PlayerScript : NetworkBehaviour
     public void RpcPastText()
     {
 
-        zvuk.GetComponent<AudioSource>().clip = pastZvuk;
-
         presentText1.GetComponent<TMP_Text>().text = "PAST";
         presentText1.GetComponent<TMP_Text>().color = Color.cyan;
         presentText2.GetComponent<TMP_Text>().text = "PAST";
@@ -936,7 +934,6 @@ Vector3 currentPosition3 = ek3.transform.position;
     public void RpcPresentText()
     {
 
-        zvuk.GetComponent<AudioSource>().clip = presentZvuk;
         presentText1.GetComponent<TMP_Text>().text = "PRESENT";
         presentText1.GetComponent<TMP_Text>().color = Color.yellow;
         presentText2.GetComponent<TMP_Text>().text = "PRESENT";
